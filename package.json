@@ -1,0 +1,22 @@
+{
+  "name": "ftp-deploy-vue",
+  "version": "1.0.13",
+  "description": "A utility for deploying files to an FTP server",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "deploy": "node index.js",
+    "postinstall": "node postinstall.js"
+  },
+  "keywords": [
+    "ftp",
+    "deploy",
+    "deployment"
+  ],
+  "author": "Andy Malonda",
+  "license": "MIT",
+  "dependencies": {
+    "basic-ftp": "^5.0.5",
+    "dotenv": "^16.4.5"
+  }
+}
