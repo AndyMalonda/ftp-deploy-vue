@@ -1,14 +1,7 @@
 import 'dotenv/config';
 import ftp from 'basic-ftp';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import config from '../../deploy.config.js'; // Adjust the path as necessary
+import config from '../../deploy.config.js';
 
-// Get the current directory name (equivalent to __dirname in CommonJS)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Resolve the dist path from the configuration
 const distPath = config.distPath;
 
 export async function purgeAndDeploy() {
@@ -38,7 +31,7 @@ async function connectToFtp(client) {
         });
         console.log('Connected to FTP server');
     } catch (err) {
-        throw new Error('Failed to connect to FTP server: ' + err.message);
+        handleError('Failed to connect to FTP server', err);
     }
 }
 
@@ -47,7 +40,7 @@ async function navigateToDirectory(client) {
         await client.cd(config.ftp.path);
         console.log(`Navigated to directory: ${config.ftp.path}`);
     } catch (err) {
-        throw new Error('Failed to navigate to directory: ' + err.message);
+        handleError('Failed to navigate to directory', err);
     }
 }
 
@@ -63,7 +56,7 @@ async function purgeDirectory(client) {
         }
         console.log('Purged directory');
     } catch (err) {
-        throw new Error('Failed to purge directory: ' + err.message);
+        handleError('Failed to purge directory', err);
     }
 }
 
@@ -72,6 +65,10 @@ async function uploadDistDirectory(client, distPath) {
         console.log(`Uploading entire directory: ${distPath}`);
         await client.uploadFromDir(distPath);  // This will upload the entire directory including subdirectories
     } catch (err) {
-        throw new Error('Failed to upload directory: ' + err.message);
+        handleError('Failed to upload directory', err);
     }
+}
+
+function handleError(message, err) {
+    throw new Error(`${message}: ${err.message}`);
 }
