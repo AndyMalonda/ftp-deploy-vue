@@ -13,6 +13,13 @@ This package provides a utility to deploy Vue application files to an FTP server
 
 **This script will delete all existing content in the target directory on the FTP server before uploading new files.** Ensure that you have backups or are aware of the consequences before running this script.
 
+## Dependencies
+
+This package uses the following dependencies:
+
+- [basic-ftp](https://www.npmjs.com/package/basic-ftp): FTP client library for Node.js.
+- [dotenv](https://www.npmjs.com/package/dotenv): Loads environment variables from a `.env` file into `process.env`.
+
 ## Installation
 
 1. Install the package using npm:
@@ -37,3 +44,13 @@ To deploy files to the FTP server, run the following command:
 ```sh
 npm run deploy
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a pull request or open an issue if you encounter any problems.
+
+GitHub: [https://github.com/AndyMalonda/ftp-deploy-vue](https://github.com/AndyMalonda/ftp-deploy-vue)
+
+## License
+
+This package is open source and available under the [MIT License](LICENSE).
